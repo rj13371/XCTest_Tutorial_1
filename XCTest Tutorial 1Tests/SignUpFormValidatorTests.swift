@@ -10,25 +10,26 @@ import XCTest
 @testable import XCTest_Tutorial_1
 
 final class SignUpFormValidatorTests: XCTestCase {
+    
+    var sut: SignUpFormValidator!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        sut = SignUpFormValidator()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = nil
     }
 
  
     func testSignUpFormModelValidator_WhenValidFirstNameProvided_ShouldReturnTrue() {
         
         //arrange
-        let sut = SignUpFormValidator()
         //act
-        let isFirstNameValid = sut.isFirstNameValid(firstName: "John")
+        let result = sut.isFirstNameValid(firstName: "asd")
         //assert
         
-        XCTAssertTrue(isFirstNameValid, "First Name is Not Valid")
+        XCTAssertTrue(result, "First Name is Not Valid")
     }
 
 }
