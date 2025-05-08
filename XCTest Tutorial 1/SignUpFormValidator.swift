@@ -19,4 +19,25 @@ class SignUpFormValidator {
         return returnValue
     }
     
+    func isPasswordValid(password: String) -> Bool {
+        var returnValue = true
+        
+        if (password.range(of: SignUpConstants.specialCharacterRegex, options: .regularExpression) == nil)  {
+            returnValue = false
+        }
+        
+        return returnValue
+    }
+    
+    func isEmailValid(email: String) -> Bool {
+        var returnValue = true
+        
+        if (email.contains("@") == false)  {
+            returnValue = false
+        }
+        
+        return returnValue
+    }
+    
+    
 }

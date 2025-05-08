@@ -51,5 +51,25 @@ final class SignUpFormValidatorTests: XCTestCase {
         
         XCTAssertFalse(result, "First Name is too short")
     }
+    
+    func testSignUpFormModelValidator_WhenPasswordContainsSpecialCharacters_ShouldReturnTrue() {
+        
+        //arrange
+        //act
+        let result = sut.isPasswordValid(password: "helloworld#")
+        //assert
+        
+        XCTAssertTrue(result, "Password contains special characters")
+    }
+    
+    func testSignUpFormModelValidator_WhenEmailContainsATSymbol_ShouldReturnTrue() {
+        
+        //arrange
+        //act
+        let result = sut.isEmailValid(email: "john@gmail.com")
+        //assert
+        
+        XCTAssertTrue(result, "Email contains @ symbol")
+    }
 
 }

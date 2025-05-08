@@ -8,6 +8,7 @@
 import Foundation
 
 struct SignUpConstants {
-    static let firstNameMinimumLength = 3
+    static let firstNameMinimumLength = 2
     static let firstNameMaximumLength = 20
+    static let specialCharacterRegex = ".*[^A-Za-z0-9].*"
 }
