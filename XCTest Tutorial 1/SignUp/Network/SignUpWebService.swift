@@ -15,13 +15,22 @@ class SignUpWebService {
         self.urlString = urlString
     }
     
-    func signUp (withForm: SignUpFormRequestModel, completionHandler: @escaping (SignUpFormResponseModel?, SignUpErrors?) -> Void){
+    func signUp (withForm formModel: SignUpFormRequestModel, completionHandler: @escaping (SignUpFormResponseModel?, SignUpErrors?) -> Void){
         
         guard let url = URL(string: urlString) else {
             //TODO Make unit test to sent error msg if url is nil
             return
         }
         
+        var request = URLRequest(url: <#T##URL#>)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        request.httpBody = try? JSONEncoder().encode(formModel)
+        
     }
+    
+
     
 }
