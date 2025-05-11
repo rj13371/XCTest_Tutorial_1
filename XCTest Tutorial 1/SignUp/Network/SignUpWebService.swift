@@ -21,7 +21,7 @@ class SignUpWebService {
     func signUp (withForm formModel: SignUpFormRequestModel, completionHandler: @escaping (SignUpFormResponseModel?, SignUpErrors?) -> Void){
         
         guard let url = URL(string: urlString) else {
-            //TODO Make unit test to sent error msg if url is nil
+            // TODO Make unit test to send error msg if url is nil
             return
         }
         
@@ -32,12 +32,14 @@ class SignUpWebService {
         
         request.httpBody = try? JSONEncoder().encode(formModel)
         
-        let dataTask = URLSession.shared.dataTask(with: request){ (data, response, error) in
+        let dataTask = urlSession.dataTask(with: request){ (data, response, error) in
             
             if let data=data, let signUpResponseModel=try? JSONDecoder().decode(SignUpFormResponseModel.self, from: data){
+                print("🔹 Raw response data:", String(data: data, encoding: .utf8) ?? "nil")
                 completionHandler(signUpResponseModel, nil)
             }else{
-                //TODO MAKE UNIT TEST TO HANDLE ERROR
+                print("⚠️ Failed to decode SignUpFormResponseModel")
+                completionHandler(nil,SignUpErrors.responseModelParsingError)
             }
             
         }

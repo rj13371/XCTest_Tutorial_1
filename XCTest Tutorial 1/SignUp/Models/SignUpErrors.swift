@@ -5,6 +5,6 @@
 //  Created by roland on 2025/05/10.
 //
 
-enum SignUpErrors:Error{
-    
+enum SignUpErrors:Error, Equatable{
+    case responseModelParsingError
 }
