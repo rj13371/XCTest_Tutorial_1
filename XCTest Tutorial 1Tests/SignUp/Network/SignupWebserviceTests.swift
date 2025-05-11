@@ -64,13 +64,27 @@ final class SignupWebserviceTests: XCTestCase {
         
         // act
         sut.signUp(withForm: signupFormRequestModel) {(signUpFormResponseModel, error) in
-            print("🔍 Error received: \(String(describing: error))")
             XCTAssertNil(signUpFormResponseModel, "The response for the model should return nil")
             XCTAssertEqual(error, SignUpErrors.responseModelParsingError, "Sign Up Method did not return expected response")
             expectation.fulfill()
         }
         //assert
         self.wait(for: [expectation], timeout: 5)
+    }
+    
+    func testSignUpWebService_WhenRecieveInvalidURL_ErrorTookPlace(){
+        //arrange
+        sut = SignUpWebService(urlString: "")
+    
+        let expectation = self.expectation(description: "SignUp() method expectation returns an error if URL is invalid")
+        
+        // act
+        sut.signUp(withForm: signupFormRequestModel) {(signUpFormResponseModel, error) in
+            XCTAssertEqual(error, SignUpErrors.invalidRequestURLStringError, "Sign Up Method used an invalid url")
+            expectation.fulfill()
+        }
+        //assert
+        self.wait(for: [expectation], timeout: 2)
     }
 
 }

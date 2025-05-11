@@ -7,4 +7,5 @@
 
 enum SignUpErrors:Error, Equatable{
     case responseModelParsingError
+    case invalidRequestURLStringError
 }
