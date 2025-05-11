@@ -65,7 +65,7 @@ final class SignupWebserviceTests: XCTestCase {
         // act
         sut.signUp(withForm: signupFormRequestModel) {(signUpFormResponseModel, error) in
             XCTAssertNil(signUpFormResponseModel, "The response for the model should return nil")
-            XCTAssertEqual(error, SignUpErrors.responseModelParsingError, "Sign Up Method did not return expected response")
+            XCTAssertEqual(error, SignUpError.responseModelParsing, "Sign Up Method did not return expected response")
             expectation.fulfill()
         }
         //assert
@@ -80,7 +80,7 @@ final class SignupWebserviceTests: XCTestCase {
         
         // act
         sut.signUp(withForm: signupFormRequestModel) {(signUpFormResponseModel, error) in
-            XCTAssertEqual(error, SignUpErrors.invalidRequestURLStringError, "Sign Up Method used an invalid url")
+            XCTAssertEqual(error, SignUpError.invalidRequestURLString, "Sign Up Method used an invalid url")
             expectation.fulfill()
         }
         //assert

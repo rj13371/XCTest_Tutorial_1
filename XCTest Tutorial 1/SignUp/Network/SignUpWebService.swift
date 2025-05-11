@@ -18,10 +18,10 @@ class SignUpWebService {
         self.urlSession = urlSession
     }
     
-    func signUp (withForm formModel: SignUpFormRequestModel, completionHandler: @escaping (SignUpFormResponseModel?, SignUpErrors?) -> Void){
+    func signUp (withForm formModel: SignUpFormRequestModel, completionHandler: @escaping (SignUpFormResponseModel?, SignUpError?) -> Void){
         
         guard let url = URL(string: urlString) else {
-            completionHandler(nil,SignUpErrors.invalidRequestURLStringError)
+            completionHandler(nil,SignUpError.invalidRequestURLString)
             return
         }
         
@@ -39,7 +39,7 @@ class SignUpWebService {
                 completionHandler(signUpResponseModel, nil)
             }else{
                 print("⚠️ Failed to decode SignUpFormResponseModel")
-                completionHandler(nil,SignUpErrors.responseModelParsingError)
+                completionHandler(nil,SignUpError.responseModelParsing)
             }
             
         }
