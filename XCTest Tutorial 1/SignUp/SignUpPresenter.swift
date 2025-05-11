@@ -21,6 +21,18 @@ class SignUpPresenter {
             return
         }
         
+        if !formModelValidator.isEmailValid(email: formModel.email){
+            return
+        }
+        
+        if !formModelValidator.isPasswordValid(password: formModel.password){
+            return
+        }
+        
+        if !formModelValidator.doPasswordsMatch(password: formModel.password, repeatPassword: formModel.repeatPassword){
+            return
+        }
+        
     }
     
 }

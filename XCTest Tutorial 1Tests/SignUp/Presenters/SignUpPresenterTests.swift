@@ -30,7 +30,10 @@ final class SignUpPresenterTests: XCTestCase {
         sut.processUserSignUp(formModel: signUpFormModel)
         //assert
         
-        XCTAssertTrue(mockSignUpModelValidator.validateFirstNameCalled)
+        XCTAssertTrue(mockSignUpModelValidator.validateFirstNameCalled, "First Name was not valid")
+        XCTAssertTrue(mockSignUpModelValidator.validateEmailCalled, "Email was not valid")
+        XCTAssertTrue(mockSignUpModelValidator.validatePasswordCalled, "Password was not valid")
+        XCTAssertTrue(mockSignUpModelValidator.validateDoPasswordsMatchCalled, "Passwords did not match")
         
     }
 
