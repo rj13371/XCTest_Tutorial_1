@@ -10,22 +10,30 @@ import XCTest
 @testable import XCTest_Tutorial_1
 
 final class SignUpPresenterTests: XCTestCase {
+    
+    var signUpFormModel: SignUpFormModel!
+    var mockSignUpModelValidator: MockSignUpModelValidator!
+    var mockSignUpWebservice: MockSignUpWebService!
+    var sut: SignUpPresenter!
 
     override func setUpWithError() throws {
+        signUpFormModel = SignUpFormModel(firstName: "John", lastName: "Smith", email: "test@test.com", password: "123456", repeatPassword: "123456")
+        mockSignUpModelValidator = MockSignUpModelValidator()
+        mockSignUpWebservice = MockSignUpWebService()
+        sut = SignUpPresenter(formModelValidator: mockSignUpModelValidator, webservice: mockSignUpWebservice)
 
     }
 
     override func tearDownWithError() throws {
+        
+        signUpFormModel = nil
+        mockSignUpModelValidator = nil
+        mockSignUpWebservice = nil
+        sut = nil
        
     }
 
     func testSignUpPresenter_WhenInformationProvided_WillValidateEachProperty() {
-        //arrange
-        let signUpFormModel = SignUpFormModel(firstName: "John", lastName: "Smith", email: "test@test.com", password: "123456", repeatPassword: "123456")
- 
-        var mockSignUpModelValidator = MockSignUpModelValidator()
-        
-        let sut = SignUpPresenter(formModelValidator: mockSignUpModelValidator)
         //act
         sut.processUserSignUp(formModel: signUpFormModel)
         //assert
@@ -34,6 +42,20 @@ final class SignUpPresenterTests: XCTestCase {
         XCTAssertTrue(mockSignUpModelValidator.validateEmailCalled, "Email was not valid")
         XCTAssertTrue(mockSignUpModelValidator.validatePasswordCalled, "Password was not valid")
         XCTAssertTrue(mockSignUpModelValidator.validateDoPasswordsMatchCalled, "Passwords did not match")
+        
+    }
+    
+    func testSignUpPresenter_WhenGivenValidSignUpModel_ShouldCallSignupMethod(){
+        //act
+        
+        sut.processUserSignUp(formModel: signUpFormModel)
+        
+        //assert
+        
+        XCTAssertTrue(mockSignUpWebservice.isSignUpMethodCalled, "The Sign Up method was called")
+    }
+    
+    func testSignUpPresenter_WhenSignUpIsSuccessful_ShouldCallViewDelegate(){
         
     }
 
