@@ -14,13 +14,16 @@ final class SignUpPresenterTests: XCTestCase {
     var signUpFormModel: SignUpFormModel!
     var mockSignUpModelValidator: MockSignUpModelValidator!
     var mockSignUpWebservice: MockSignUpWebService!
+    var mockSignUpViewDelegate:MockSignUpViewDelegate!
     var sut: SignUpPresenter!
 
     override func setUpWithError() throws {
         signUpFormModel = SignUpFormModel(firstName: "John", lastName: "Smith", email: "test@test.com", password: "123456", repeatPassword: "123456")
         mockSignUpModelValidator = MockSignUpModelValidator()
         mockSignUpWebservice = MockSignUpWebService()
-        sut = SignUpPresenter(formModelValidator: mockSignUpModelValidator, webservice: mockSignUpWebservice)
+        mockSignUpViewDelegate = MockSignUpViewDelegate()
+        
+        sut = SignUpPresenter(formModelValidator: mockSignUpModelValidator, webservice: mockSignUpWebservice, mockSignUpViewDelegate: mockSignUpViewDelegate)
 
     }
 
@@ -56,7 +59,16 @@ final class SignUpPresenterTests: XCTestCase {
     }
     
     func testSignUpPresenter_WhenSignUpIsSuccessful_ShouldCallViewDelegate(){
+        let myExpectation = expectation(description: "Sign Up Presenter Expectation")
+ 
+        mockSignUpViewDelegate.expectation = myExpectation
         
+        
+        // act
+        
+        sut.processUserSignUp(formModel: signUpFormModel)
+        //assert
+        self.wait(for: [myExpectation], timeout: 5)
     }
 
 }

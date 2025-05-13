@@ -11,10 +11,12 @@ class SignUpPresenter {
     
     private var formModelValidator: SignUpModelValidatorProtocol
     private var webservice : SignUpWebServiceProtocol
+    private weak var mockSignUpViewDelegate : MockSignUpViewDelegateProtocol?
     
-    init(formModelValidator: SignUpModelValidatorProtocol, webservice:SignUpWebServiceProtocol){
+    init(formModelValidator: SignUpModelValidatorProtocol, webservice:SignUpWebServiceProtocol, mockSignUpViewDelegate: MockSignUpViewDelegateProtocol){
         self.formModelValidator = formModelValidator
         self.webservice = webservice
+        self.mockSignUpViewDelegate = mockSignUpViewDelegate
     }
     
     func processUserSignUp (formModel: SignUpFormModel){
@@ -36,8 +38,11 @@ class SignUpPresenter {
         }
         let requestModel = SignUpFormRequestModel(firstName: formModel.firstName, lastName: formModel.lastName, email: formModel.email, password: formModel.password)
     
-        webservice.signUp(withForm: requestModel) { responseModel, error in
-            print("hello")
+        webservice.signUp(withForm: requestModel) {[weak self] responseModel, error in
+            if let responseModel = responseModel{
+                self?.mockSignUpViewDelegate?.isSignUpMethodCalled()
+                return
+            }
         }
         
     }
