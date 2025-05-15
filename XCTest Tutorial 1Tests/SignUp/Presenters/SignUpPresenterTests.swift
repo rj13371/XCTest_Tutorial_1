@@ -62,8 +62,20 @@ final class SignUpPresenterTests: XCTestCase {
         let myExpectation = expectation(description: "Sign Up Presenter Expectation")
  
         mockSignUpViewDelegate.expectation = myExpectation
+        // act
         
+        sut.processUserSignUp(formModel: signUpFormModel)
+        //assert
+        self.wait(for: [myExpectation], timeout: 5)
+    }
+    
+    func testSignUpPresenter_WhenSignUpHasFailed_ShouldCallErrorHandler(){
+        let myExpectation = expectation(description: "Sign Up Presenter Error Expectation")
+ 
+        mockSignUpViewDelegate.expectation = myExpectation
         
+        //Sign Up with Invalid Email and Password
+        signUpFormModel = SignUpFormModel(firstName: "John", lastName: "Smith", email: "test.com", password: "1", repeatPassword: "1")
         // act
         
         sut.processUserSignUp(formModel: signUpFormModel)
