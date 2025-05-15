@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2A3643D22DD5E9B8008B6954 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 2A3643D12DD5E9B8008B6954 /* ViewInspector */; };
+		2A3643D42DD5E9C9008B6954 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 2A3643D32DD5E9C9008B6954 /* ViewInspector */; };
+		2A3643DB2DD5EDE5008B6954 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3643DA2DD5EDE5008B6954 /* XCTest.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		2A41B4102DCB556200EC69AE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A3643DA2DD5EDE5008B6954 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		2A41B4022DCB556000EC69AE /* XCTest Tutorial 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XCTest Tutorial 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A41B40F2DCB556200EC69AE /* XCTest Tutorial 1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "XCTest Tutorial 1Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A41B4192DCB556200EC69AE /* XCTest Tutorial 1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "XCTest Tutorial 1UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +59,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A3643DB2DD5EDE5008B6954 /* XCTest.framework in Frameworks */,
+				2A3643D22DD5E9B8008B6954 /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A3643D42DD5E9C9008B6954 /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +82,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A3643D92DD5EDE5008B6954 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2A3643DA2DD5EDE5008B6954 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2A41B3F92DCB556000EC69AE = {
 			isa = PBXGroup;
 			children = (
 				2A41B4042DCB556000EC69AE /* XCTest Tutorial 1 */,
 				2A41B4122DCB556200EC69AE /* XCTest Tutorial 1Tests */,
 				2A41B41C2DCB556200EC69AE /* XCTest Tutorial 1UITests */,
+				2A3643D92DD5EDE5008B6954 /* Frameworks */,
 				2A41B4032DCB556000EC69AE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,6 +131,7 @@
 			);
 			name = "XCTest Tutorial 1";
 			packageProductDependencies = (
+				2A3643D12DD5E9B8008B6954 /* ViewInspector */,
 			);
 			productName = "XCTest Tutorial 1";
 			productReference = 2A41B4022DCB556000EC69AE /* XCTest Tutorial 1.app */;
@@ -135,6 +155,7 @@
 			);
 			name = "XCTest Tutorial 1Tests";
 			packageProductDependencies = (
+				2A3643D32DD5E9C9008B6954 /* ViewInspector */,
 			);
 			productName = "XCTest Tutorial 1Tests";
 			productReference = 2A41B40F2DCB556200EC69AE /* XCTest Tutorial 1Tests.xctest */;
@@ -196,6 +217,9 @@
 			);
 			mainGroup = 2A41B3F92DCB556000EC69AE;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2A3643D02DD5E804008B6954 /* XCRemoteSwiftPackageReference "ViewInspector" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2A41B4032DCB556000EC69AE /* Products */;
 			projectDirPath = "";
@@ -412,6 +436,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-weak_framework",
+					XCTest,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "project.XCTest-Tutorial-1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -563,6 +591,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2A3643D02DD5E804008B6954 /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nalexn/ViewInspector";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2A3643D12DD5E9B8008B6954 /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A3643D02DD5E804008B6954 /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
+		};
+		2A3643D32DD5E9C9008B6954 /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A3643D02DD5E804008B6954 /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2A41B3FA2DCB556000EC69AE /* Project object */;
 }

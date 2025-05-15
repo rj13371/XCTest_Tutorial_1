@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ViewInspector
 
 @main
 struct XCTest_Tutorial_1App: App {

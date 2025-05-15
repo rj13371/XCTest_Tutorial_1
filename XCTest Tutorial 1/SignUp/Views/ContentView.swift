@@ -2,10 +2,11 @@
 //  ContentView.swift
 //  XCTest Tutorial 1
 //
-//  Created by roland on 2025/05/07.
+//  Created by roland on 2025/05/15.
 //
 
 import SwiftUI
+import ViewInspector
 
 struct ContentView: View {
     var body: some View {
@@ -13,12 +14,8 @@ struct ContentView: View {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("Hello World!")
         }
         .padding()
     }
-}
-
-#Preview {
-    ContentView()
 }
