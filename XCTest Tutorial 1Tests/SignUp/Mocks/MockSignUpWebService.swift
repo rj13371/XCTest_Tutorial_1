@@ -12,12 +12,19 @@ import Foundation
 class MockSignUpWebService: SignUpWebServiceProtocol {
     
     var isSignUpMethodCalled: Bool = false
+    var shouldReturnError: Bool = false
     
     func signUp(withForm formModel: XCTest_Tutorial_1.SignUpFormRequestModel, completionHandler: @escaping (XCTest_Tutorial_1.SignUpFormResponseModel?, XCTest_Tutorial_1.SignUpError?) -> Void) {
         isSignUpMethodCalled = true
         
-        let responseModel = SignUpFormResponseModel(status: "ok")
-        completionHandler(responseModel, nil)
+        if shouldReturnError {
+            completionHandler(nil, SignUpError.failedRequest(description: "Signup request was not fufilled."))
+        }else{
+            let responseModel = SignUpFormResponseModel(status: "ok")
+            completionHandler(responseModel, nil)
+        }
+        
+
     }
 
 

@@ -70,17 +70,15 @@ final class SignUpPresenterTests: XCTestCase {
     }
     
     func testSignUpPresenter_WhenSignUpHasFailed_ShouldCallErrorHandler(){
-        let myExpectation = expectation(description: "Sign Up Presenter Error Expectation")
+        let errorHandlerExpectation = expectation(description: "expected the errorHandler() to be called")
  
-        mockSignUpViewDelegate.expectation = myExpectation
-        
-        //Sign Up with Invalid Email and Password
-        signUpFormModel = SignUpFormModel(firstName: "John", lastName: "Smith", email: "test.com", password: "1", repeatPassword: "1")
-        // act
-        
+        mockSignUpViewDelegate.expectation = errorHandlerExpectation
+        mockSignUpWebservice.shouldReturnError = true
         sut.processUserSignUp(formModel: signUpFormModel)
         //assert
-        self.wait(for: [myExpectation], timeout: 5)
+        self.wait(for: [errorHandlerExpectation], timeout: 5)
+        
+        XCTAssertNotNil(mockSignUpWebservice.shouldReturnError)
     }
 
 }

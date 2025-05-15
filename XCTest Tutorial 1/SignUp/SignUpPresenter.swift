@@ -39,7 +39,13 @@ class SignUpPresenter {
         let requestModel = SignUpFormRequestModel(firstName: formModel.firstName, lastName: formModel.lastName, email: formModel.email, password: formModel.password)
     
         webservice.signUp(withForm: requestModel) {[weak self] responseModel, error in
-            if let responseModel = responseModel{
+            
+            if let error = error{
+                self?.mockSignUpViewDelegate?.errorHandler(error: error)
+                return
+            }
+            
+            if let responseModel{
                 self?.mockSignUpViewDelegate?.isSignUpMethodCalled()
                 return
             }

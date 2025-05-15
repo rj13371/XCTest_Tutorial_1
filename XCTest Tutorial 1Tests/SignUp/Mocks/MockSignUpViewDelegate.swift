@@ -13,12 +13,15 @@ import XCTest
 class MockSignUpViewDelegate: MockSignUpViewDelegateProtocol {
     
     var expectation: XCTestExpectation?
+    var signUpError: SignUpError?
     
     func isSignUpMethodCalled () {
         expectation?.fulfill()
     }
     
     func errorHandler (error: SignUpError){
+        signUpError = error
+        expectation?.fulfill()
         
     }
 }

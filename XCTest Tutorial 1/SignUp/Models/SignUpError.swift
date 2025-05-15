@@ -8,4 +8,5 @@
 enum SignUpError:Error, Equatable{
     case responseModelParsing
     case invalidRequestURLString
+    case failedRequest(description: String)
 }
