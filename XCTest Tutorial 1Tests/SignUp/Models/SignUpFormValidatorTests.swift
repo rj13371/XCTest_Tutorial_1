@@ -62,10 +62,8 @@ final class SignUpFormValidatorTests: XCTestCase {
         XCTAssertTrue(result, "Password contains special characters")
     }
     
-    func testSignUpFormModelValidator_WhenEmailContainsATSymbol_ShouldReturnTrue() {
-        
-        
-        XCTAssertTrue(try sut.isEmailValid(email: "john@gmail.com"), "Email contains @ symbol")
+    func testSignUpFormModelValidator_WhenEmailContainsATSymbol_ThrowsNoError() {
+        XCTAssertNoThrow(try sut.isEmailValid(email: "john@gmail.com"), "Email contains @ symbol")
     }
     
     func testSignUpFormModelValidator_WhenEmailContainsNoATSymbol_ShouldReturnError() {
