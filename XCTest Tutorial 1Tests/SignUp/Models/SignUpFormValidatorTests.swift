@@ -64,12 +64,13 @@ final class SignUpFormValidatorTests: XCTestCase {
     
     func testSignUpFormModelValidator_WhenEmailContainsATSymbol_ShouldReturnTrue() {
         
-        //arrange
-        //act
-        let result = sut.isEmailValid(email: "john@gmail.com")
-        //assert
         
-        XCTAssertTrue(result, "Email contains @ symbol")
+        XCTAssertTrue(try sut.isEmailValid(email: "john@gmail.com"), "Email contains @ symbol")
+    }
+    
+    func testSignUpFormModelValidator_WhenEmailContainsNoATSymbol_ShouldReturnError() {
+        
+        XCTAssertThrowsError(try sut.isEmailValid(email: "johngmail.com"), "Email contains no @ symbol")
     }
 
 }

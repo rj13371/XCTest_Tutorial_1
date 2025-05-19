@@ -9,6 +9,7 @@ import Foundation
 
 class SignUpFormValidator: SignUpModelValidatorProtocol {
     
+    
     func isFirstNameValid(firstName: String) -> Bool {
         var returnValue = true
         
@@ -29,14 +30,13 @@ class SignUpFormValidator: SignUpModelValidatorProtocol {
         return returnValue
     }
     
-    func isEmailValid(email: String) -> Bool {
-        var returnValue = true
-        
+    func isEmailValid(email: String) throws -> Bool {
         if (email.contains("@") == false)  {
-            returnValue = false
+            throw SignUpError.illegalCharactersFound
+        }else{
+            return true
         }
-        
-        return returnValue
+
     }
     
     func doPasswordsMatch(password: String, repeatPassword: String) -> Bool {

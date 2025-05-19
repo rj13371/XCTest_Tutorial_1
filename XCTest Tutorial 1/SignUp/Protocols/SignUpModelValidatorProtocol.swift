@@ -10,7 +10,7 @@ protocol SignUpModelValidatorProtocol {
     
     func isPasswordValid(password: String) -> Bool
     
-    func isEmailValid(email: String) -> Bool
+    func isEmailValid(email: String) throws -> Bool
     
     func doPasswordsMatch(password: String, repeatPassword:String) -> Bool
     

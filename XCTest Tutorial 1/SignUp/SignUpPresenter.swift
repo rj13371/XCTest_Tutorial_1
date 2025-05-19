@@ -25,7 +25,11 @@ class SignUpPresenter {
             return
         }
         
-        if !formModelValidator.isEmailValid(email: formModel.email){
+        do {
+            if try !formModelValidator.isEmailValid(email: formModel.email) {
+                return
+            }
+        } catch {
             return
         }
         
